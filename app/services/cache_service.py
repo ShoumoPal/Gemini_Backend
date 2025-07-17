@@ -5,7 +5,7 @@ from ..config import settings
 
 class CacheService:
     def __init__(self):
-        self.redis_client = redis.from_url(settings.redis_url)
+        self.redis_client = redis.from_url(settings.REDIS_URL)
     
     def get(self, key: str) -> Optional[Any]:
         """Get value from cache"""

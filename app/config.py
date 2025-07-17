@@ -14,6 +14,6 @@ class Settings(BaseSettings):
     OTP_EXPIRATION_MINUTES : int = 5
 
     class Config:
-        env_file = '.env'
+        env_file = 'app/.env'
 
 settings = Settings()

@@ -20,6 +20,7 @@ class User(Base):
     mobile_number = Column(String, unique=True, index=True, nullable=False)
     password_hash = Column(String, nullable=True)
     subscription_tier = Column(Enum(SubscriptionTier), default=SubscriptionTier.BASIC)
+    subscription_status = Column(Enum(SubscriptionStatus), default=SubscriptionStatus.INACTIVE)
     daily_usage_count = Column(Integer, default=0)
     last_usage_reset = Column(DateTime, default=datetime.now(tz=timezone.utc))
     created_at = Column(DateTime, default=datetime.now(tz=timezone.utc))

@@ -3,7 +3,7 @@ from sqlalchemy.orm import relationship
 from datetime import datetime, timezone
 from app.database import Base
 
-class Subscriptions(Base):
+class Subscription(Base):
     __tablename__ = 'subscriptions'
 
     id = Column(Integer, primary_key=True, index=True)

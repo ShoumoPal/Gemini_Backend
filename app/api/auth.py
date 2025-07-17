@@ -15,9 +15,14 @@ security = HTTPBearer()
 async def register(user_data: UserCreate, db: Session = Depends(get_db)):
     """Register a new user"""
     auth_service = AuthService(db)
+    existing_user = None
     
     # Check if user already exists
-    existing_user = auth_service.get_user_by_mobile(user_data.mobile_number)
+    try:
+        existing_user = auth_service.get_user_by_mobile(user_data.mobile_number)
+    except Exception as e:
+        print(str(e))
+
     if existing_user:
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,

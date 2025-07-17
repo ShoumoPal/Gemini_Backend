@@ -1,7 +1,7 @@
 from fastapi import Request, HTTPException, status
 from ..services.cache_service import CacheService
 from ..models.user import User, SubscriptionTier
-from datetime import datetime, timedelta
+from datetime import datetime, timezone
 
 cache_service = CacheService()
 
@@ -12,7 +12,7 @@ class RateLimitMiddleware:
     def check_daily_limit(self):
         """Check if user has exceeded daily message limit"""
         # Reset daily count if it's a new day
-        now = datetime.utcnow()
+        now = datetime.now(tz=timezone.utc)
         if self.user.last_usage_reset.date() < now.date():
             self.user.daily_usage_count = 0
             self.user.last_usage_reset = now

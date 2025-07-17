@@ -10,6 +10,8 @@ from .config import settings
 from datetime import datetime, timezone
 
 # Create database tables
+Base.metadata.drop_all(engine)
+
 Base.metadata.create_all(bind=engine)
 
 @asynccontextmanager
@@ -30,7 +32,7 @@ app = FastAPI(
 # CORS middleware
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # Configure appropriately for production
+    allow_origins=["*"],  
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],

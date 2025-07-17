@@ -3,7 +3,7 @@ from typing import Optional
 from ..config import settings
 from ..models.user import SubscriptionTier
 
-stripe.api_key = settings.stripe_secret_key
+stripe.api_key = settings.STRIPE_SECRET_KEY
 
 class StripeService:
     def __init__(self):

@@ -4,8 +4,8 @@ from ..config import settings
 
 class GeminiService:
     def __init__(self):
-        genai.configure(api_key=settings.gemini_api_key)
-        self.model = genai.GenerativeModel('gemini-pro')
+        genai.configure(api_key=settings.GEMINI_API_KEY)
+        self.model = genai.GenerativeModel('gemini-1.5-flash')
     
     async def generate_response(self, prompt: str) -> Optional[str]:
         """Generate response from Gemini API"""

@@ -1,5 +1,6 @@
 from sqlalchemy.orm import Session
-from ..models.user import User
+from sqlalchemy import text
+from ..models.user import User, SubscriptionStatus
 from ..schemas.user import UserCreate
 from ..utils.jwt_utils import verify_password, get_password_hash
 from ..utils.otp_utils import generate_otp, store_otp, verify_otp, send_otp_sms
@@ -39,7 +40,7 @@ class AuthService:
     def send_otp(self, mobile_number: str) -> bool:
         """Generate and send OTP"""
         otp = generate_otp()
-        store_otp(mobile_number, otp, settings.otp_expiration_minutes)
+        store_otp(mobile_number, otp, settings.OTP_EXPIRATION_MINUTES)
         return send_otp_sms(mobile_number, otp)
     
     def verify_otp_code(self, mobile_number: str, otp: str) -> bool:

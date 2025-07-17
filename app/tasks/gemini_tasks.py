@@ -5,7 +5,7 @@ from ..services.gemini_service import GeminiService
 from ..models.chatroom import Message
 from ..config import settings
 
-celery_app = Celery('gemini_tasks', broker=settings.redis_url)
+celery_app = Celery('gemini_tasks', broker=settings.REDIS_URL)
 
 @celery_app.task
 def process_gemini_message(message_id: int):
